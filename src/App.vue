@@ -5,6 +5,29 @@
     <!-- :key="키값"-->
     <h3 class="bg-yellow" :style="textRed">{{ movie.title }}</h3>
     <!-- :속성명 = "데이터" -->
+
+    <!-- Vue.js에서 :style="..."와 같은 문법은 "바인딩 디렉티브" 중 하나입니다. 콜론 :은 v-bind 디렉티브의 축약형으로, JavaScript 표현식을 HTML 속성에 바인딩할 때 사용됩니다. 이 문법을 통해 Vue.js 컴포넌트에서 동적 스타일을 적용할 수 있습니다.
+    - 바인딩 가능한 속성들
+      v-bind 디렉티브(즉, :)를 사용하면 거의 모든 HTML 속성과 Vue.js 컴포넌트 속성에 JavaScript 표현식을 바인딩할 수 있습니다. 몇 가지 예시는 다음과 같습니다:
+
+      HTML 속성:
+
+      :href="dynamicUrl": 동적 URL을 href 속성에 바인딩합니다.
+      :src="imageSrc": 동적 이미지 소스를 src 속성에 바인딩합니다.
+      :alt="imageDescription": 동적 텍스트를 alt 속성에 바인딩합니다.
+      
+      Boolean 속성:
+
+      :disabled="isDisabled": isDisabled가 true일 때 버튼을 비활성화합니다.
+      :checked="isChecked": 체크박스를 동적으로 체크합니다.
+
+      CSS 클래스:
+
+      :class="{ active: isActive }": isActive가 true일 때 active 클래스를 추가합니다.
+      :class="[class1, class2]": 배열 형태로 여러 클래스를 동적으로 추가합니다.
+
+      -->
+
     <p>개봉: {{ movie.year }}</p>
     <p>장르: {{ movie.category }}</p>
   </div>
