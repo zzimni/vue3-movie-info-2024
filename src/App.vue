@@ -3,49 +3,56 @@
   <h1>영화정보</h1>
   <div v-for="(movie, i) in data" :key="i" class="item">
     <figure>
-      <img :src="`${movie.imgUrl}`" :alt="movie.title">
+      <img :src="`${movie.imgUrl}`" :alt="movie.title" />
     </figure>
     <div class="info">
       <h3 class="bg-yellow">{{ movie.title }}</h3>
       <p>개봉: {{ movie.year }}</p>
       <p>장르: {{ movie.category }}</p>
-      <button @:click="increseLike(i)">좋아요
-      </button>
+      <button @:click="increseLike(i)">좋아요</button>
       <span>{{ movie.like }}</span>
       <p>
-        <button @click="isModal=true; selectedMovie=i">상세보기</button>
+        <button
+          @click="
+            isModal = true;
+            selectedMovie = i;
+          "
+        >
+          상세보기
+        </button>
       </p>
     </div>
   </div>
   <Modal />
-
 </template>
 
 <script>
-import data from './assets/movies'; // 영화 데이터
-import Navbar from './components/Navbar.vue';
-import Modal from './components/Modal.vue';
+import data from "./assets/movies"; // 영화 데이터
+import Navbar from "./components/Navbar.vue";
+import Modal from "./components/Modal.vue";
+// 사용할 컴포넌트를 import로 불러오고 이름을 지어줌
+
 console.log(data);
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      isModal: false, 
+      isModal: false,
       data: data,
       selectedMovie: 0,
-    }
+    };
   },
   methods: {
     increseLike(i) {
       this.data[i].like += 1;
-    }
+    },
   },
   components: {
-    Navbar: Navbar,
+    Navbar: Navbar, // 변수명: import로 불러온 컴포넌트명 (같은 이름으로 하는 것이 관례) - 템플릿에서 쓰는 건 변수명인듯?
     Modal: Modal,
-  }
-}
+  },
+};
 </script>
 
 <style>
