@@ -2,49 +2,56 @@
   <h1>영화정보</h1>
   <div v-for="(movie, i) in data" :key="i" class="item">
     <figure>
-      <img :src="`${movie.imgUrl}`" :alt="movie.title">
+      <img :src="`${movie.imgUrl}`" :alt="movie.title" />
     </figure>
     <div class="info">
       <h3 class="bg-yellow">{{ movie.title }}</h3>
       <p>개봉: {{ movie.year }}</p>
       <p>장르: {{ movie.category }}</p>
-      <button @:click="increseLike(i)">좋아요
-      </button>
+      <button @:click="increseLike(i)">좋아요</button>
       <span>{{ movie.like }}</span>
       <p>
-        <button @click="isModal=true; selectedMovie=i">상세보기</button>
+        <button
+          @click="
+            isModal = true;
+            selectedMovie = i;
+          "
+        >
+          상세보기
+        </button>
+        <!-- 버튼을 클릭했을 때 selectedMovie변수의 값을 현재 버튼 누른 영화의 index값으로 변환 -->
       </p>
     </div>
   </div>
 
   <div class="modal" v-if="isModal">
     <div class="inner">
-      <h3>{{data[selectedMovie].title}}</h3>
+      <h3>{{ data[selectedMovie].title }}</h3>
       <p>영화 상세정보</p>
-      <button @click="isModal=false">닫기</button>
+      <button @click="isModal = false">닫기</button>
     </div>
   </div>
 </template>
 
 <script>
-import data from './assets/movies'; // 영화 데이터
+import data from "./assets/movies"; // 영화 데이터
 console.log(data);
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      isModal: false, 
+      isModal: false,
       data: data,
       selectedMovie: 0,
-    }
+    };
   },
   methods: {
     increseLike(i) {
       this.data[i].like += 1;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
