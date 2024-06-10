@@ -2,17 +2,18 @@
   <h1>영화정보</h1>
   <div v-for="(movie, i) in data" :key="i" class="item">
     <figure>
-      <img :src="`${movie.imgUrl}`" :alt="movie.title">
+      <img :src="`${movie.imgUrl}`" :alt="movie.title" />
+      <!-- (태그 안에서! 속성으로) 동적인 값을 넣을 땐 항상 앞에 콜론을 넣어야함 - v-bind 문법 -->
+      <!-- 템플릿 문법 - 백틱을 사용하면 문자와 변수를 같이 작성 가능함 -->
     </figure>
     <div class="info">
       <h3 class="bg-yellow">{{ movie.title }}</h3>
       <p>개봉: {{ movie.year }}</p>
       <p>장르: {{ movie.category }}</p>
-      <button @:click="increseLike(i)">좋아요
-      </button>
+      <button @:click="increseLike(i)">좋아요</button>
       <span>{{ movie.like }}</span>
       <p>
-        <button @click="isModal=true">상세보기</button>
+        <button @click="isModal = true">상세보기</button>
       </p>
     </div>
   </div>
@@ -21,17 +22,17 @@
     <div class="inner">
       <h3>Detail</h3>
       <p>영화 상세정보</p>
-      <button>닫기</button>
+      <button @click="isModal = false">닫기</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      isModal: false, 
+      isModal: false,
       data: [
         {
           title: "노량",
@@ -39,31 +40,31 @@ export default {
           category: "액션, 드라마",
           textRed: "color: red",
           like: 0,
-          imgUrl: './assets/3일의휴가.jpg'
+          imgUrl: "./assets/3일의휴가.jpg",
         },
         {
           title: "아쿠아맨과 로스트 킹덤",
           year: 2023,
-          category: '액션, 판타지, 어드벤처',
+          category: "액션, 판타지, 어드벤처",
           like: 0,
-          imgUrl: './assets/노량.jpg'
+          imgUrl: "./assets/노량.jpg",
         },
         {
           title: "3일의 휴가",
           year: 2023,
-          category: '판타지, 드라마',
+          category: "판타지, 드라마",
           like: 0,
-          imgUrl: './assets/아쿠아맨.jpg'
+          imgUrl: "./assets/아쿠아맨.jpg",
         },
-      ]
-    }
+      ],
+    };
   },
   methods: {
     increseLike(i) {
       this.data[i].like += 1;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
