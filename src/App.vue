@@ -2,17 +2,16 @@
   <h1>영화정보</h1>
   <div v-for="(movie, i) in data" :key="i" class="item">
     <figure>
-      <img :src="`${movie.imgUrl}`" :alt="movie.title">
+      <img :src="`${movie.imgUrl}`" :alt="movie.title" />
     </figure>
     <div class="info">
       <h3 class="bg-yellow">{{ movie.title }}</h3>
       <p>개봉: {{ movie.year }}</p>
       <p>장르: {{ movie.category }}</p>
-      <button @:click="increseLike(i)">좋아요
-      </button>
+      <button @:click="increseLike(i)">좋아요</button>
       <span>{{ movie.like }}</span>
       <p>
-        <button @click="isModal=true">상세보기</button>
+        <button @click="isModal = true">상세보기</button>
       </p>
     </div>
   </div>
@@ -21,29 +20,29 @@
     <div class="inner">
       <h3>Detail</h3>
       <p>영화 상세정보</p>
-      <button @click="isModal=false">닫기</button>
+      <button @click="isModal = false">닫기</button>
     </div>
   </div>
 </template>
 
 <script>
-import data from './assets/movies'; // 영화 데이터
+import data from "./assets/movies"; // 영화 데이터 - movies에서 data를 export default로 대표로 하나만 내보냈기 때문에 중괄호 안 써도 됨
 console.log(data);
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      isModal: false, 
+      isModal: false,
       data: data,
-    }
+    };
   },
   methods: {
     increseLike(i) {
       this.data[i].like += 1;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
