@@ -1,55 +1,63 @@
 <template>
   <Navbar />
   <Event :text="text" />
+  <!-- 부모 컴포넌트에서 자식 컴포넌트로 데이터를 전달 : props -->
+  <!-- 속성명(props 변수) = "보낼 값" -->
+  <!-- :text로 보내면 데이터 바인딩 - 스크립트에서 정의한 변수를 템플릿에 가져올 수 있다 -->
   <h1>영화정보</h1>
   <div v-for="(movie, i) in data" :key="i" class="item">
     <figure>
-      <img :src="`${movie.imgUrl}`" :alt="movie.title">
+      <img :src="`${movie.imgUrl}`" :alt="movie.title" />
     </figure>
     <div class="info">
       <h3 class="bg-yellow">{{ movie.title }}</h3>
       <p>개봉: {{ movie.year }}</p>
       <p>장르: {{ movie.category }}</p>
-      <button @:click="increseLike(i)">좋아요
-      </button>
+      <button @:click="increseLike(i)">좋아요</button>
       <span>{{ movie.like }}</span>
       <p>
-        <button @click="isModal=true; selectedMovie=i">상세보기</button>
+        <button
+          @click="
+            isModal = true;
+            selectedMovie = i;
+          "
+        >
+          상세보기
+        </button>
       </p>
     </div>
   </div>
   <!-- <Modal /> -->
-
 </template>
 
 <script>
-import data from './assets/movies'; // 영화 데이터
-import Navbar from './components/Navbar.vue';
-import Event from './components/Event.vue'; // 이벤트 박스
+import data from "./assets/movies"; // 영화 데이터
+import Navbar from "./components/Navbar.vue";
+import Event from "./components/Event.vue"; // 이벤트 박스
 // import Modal from './components/Modal.vue';
 console.log(data);
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      isModal: false, 
+      isModal: false,
       data: data,
       selectedMovie: 0,
-      text: "NEPLIX 강렬한 운명의 드라마, 경기크리처"
-    }
+      text: "NEPLIX 강렬한 운명의 드라마, 경기크리처",
+    };
   },
   methods: {
     increseLike(i) {
       this.data[i].like += 1;
-    }
+    },
   },
   components: {
     Navbar: Navbar,
     Event: Event,
     // Modal: Modal,
-  }
-}
+  },
+};
 </script>
 
 <style>
