@@ -4,57 +4,63 @@
   <h1>영화정보</h1>
   <div v-for="(movie, i) in data" :key="i" class="item">
     <figure>
-      <img :src="`${movie.imgUrl}`" :alt="movie.title">
+      <img :src="`${movie.imgUrl}`" :alt="movie.title" />
     </figure>
     <div class="info">
       <h3 class="bg-yellow">{{ movie.title }}</h3>
       <p>개봉: {{ movie.year }}</p>
       <p>장르: {{ movie.category }}</p>
-      <button @:click="increseLike(i)">좋아요
-      </button>
+      <button @:click="increseLike(i)">좋아요</button>
       <span>{{ movie.like }}</span>
       <p>
-        <button @click="isModal=true; selectedMovie=i">상세보기</button>
+        <button
+          @click="
+            isModal = true;
+            selectedMovie = i;
+          "
+        >
+          상세보기
+        </button>
       </p>
     </div>
   </div>
-  <Modal 
-    :data="data" 
-    :isModal="isModal" 
+  <Modal
+    :data="data"
+    :isModal="isModal"
     :selectedMovie="selectedMovie"
-    @closeModal="isModal=false"
+    @closeModal="isModal = false"
   />
-
+  <!-- 자식 컴포넌트에서 발생한 이벤트명(커스텀 이벤트)은 앞에 @ 추가 -->
 </template>
 
 <script>
-import data from './assets/movies'; // 영화 데이터
-import Navbar from './components/Navbar.vue';
-import Event from './components/Event.vue'; // 이벤트 박스
-import Modal from './components/Modal.vue';
+import data from "./assets/movies"; // 영화 데이터
+import Navbar from "./components/Navbar.vue";
+import Event from "./components/Event.vue"; // 이벤트 박스
+import Modal from "./components/Modal.vue";
 console.log(data);
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      isModal: false, 
+      isModal: false,
       data: data,
       selectedMovie: 0,
-      text: "NEPLIX 강렬한 운명의 드라마, 경기크리처"
-    }
+      text: "NEPLIX 강렬한 운명의 드라마, 경기크리처",
+    };
   },
   methods: {
     increseLike(i) {
       this.data[i].like += 1;
-    }
+    },
   },
   components: {
     Navbar: Navbar,
     Event: Event,
     Modal: Modal,
-  }
-}
+  },
+};
 </script>
 
 <style>
